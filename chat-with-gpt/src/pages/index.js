@@ -16,10 +16,14 @@ const MessageWindowWrapper = styled.div`
   flex: 1;
 `;
 
+const DUMMY_DATA = {
+  username: "Alice",
+};
+
 export default function Home() {
   return (
     <Wrapper>
-      <Navbar />
+      <Navbar username={DUMMY_DATA.username} />
       <MessageWindowWrapper>
         <MessageWindow />
       </MessageWindowWrapper>

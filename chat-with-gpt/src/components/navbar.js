@@ -17,12 +17,12 @@ const Group = styled.a`
   margin-left: auto;
 `;
 
-const navbar = () => {
+const navbar = ({ username }) => {
   return (
     <Wrapper>
-      <Menu>menu</Menu>
-      <Name>name</Name>
-      <Group>group</Group>
+      <Menu>[menu]</Menu>
+      <Name>{username}</Name>
+      <Group>[group]</Group>
     </Wrapper>
   );
 };
