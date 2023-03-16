@@ -1,6 +1,7 @@
 import MessageInput from "@/components/messageInput";
 import MessageWindow from "@/components/messageWindow";
 import Navbar from "@/components/navbar";
+import { DUMMY_DATA } from "@/constances";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -12,10 +13,6 @@ const Wrapper = styled.div`
 const MessageWindowWrapper = styled.div`
   flex: 1;
 `;
-
-const DUMMY_DATA = {
-  username: "Alice",
-};
 
 export default function Home() {
   return (
