@@ -3,13 +3,13 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
+  padding-top: 20vh;
 `;
 
 const LoginCard = styled.div`
   width: 320px;
   border: 1px solid red;
   margin: auto;
-  margin-top: 20vh;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,10 @@ const Login = () => {
         <PasswordInput />
         <LoginButton>Sign in</LoginButton>
         <RegisterRedirection>
-          Don't have an account? <a href="">Register</a>
+          Don't have an account?{" "}
+          <a href="#" onClick={() => console.log(123)}>
+            Register
+          </a>
         </RegisterRedirection>
       </LoginCard>
     </Wrapper>
