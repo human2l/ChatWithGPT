@@ -1,7 +1,7 @@
 import MessageInput from "@/components/messageInput";
 import MessageWindow from "@/components/messageWindow";
 import Navbar from "@/components/navbar";
-import { DUMMY_DATA } from "@/constances";
+import { verifyToken } from "@/lib/utils";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -14,10 +14,26 @@ const MessageWindowWrapper = styled.div`
   flex: 1;
 `;
 
-export default function Home() {
+export const getServerSideProps = async ({ req, res }) => {
+  const token = req.cookies.token;
+  const user = await verifyToken(token);
+  if (user) {
+    return {
+      props: { user },
+    };
+  }
+  return {
+    redirect: {
+      destination: "/login",
+      permanent: false,
+    },
+  };
+};
+
+function Home({ user }) {
   return (
     <Wrapper>
-      <Navbar username={DUMMY_DATA.username} />
+      <Navbar username={user} />
       <MessageWindowWrapper>
         <MessageWindow />
       </MessageWindowWrapper>
@@ -25,3 +41,5 @@ export default function Home() {
     </Wrapper>
   );
 }
+
+export default Home;
