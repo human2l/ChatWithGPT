@@ -1,4 +1,8 @@
 export const DUMMY_DATA = {
+  users: {
+    Alice: "1",
+    Bob: "1",
+  },
   username: "Alice",
   messageList: [
     {
