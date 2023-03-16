@@ -31,11 +31,12 @@ export const getServerSideProps = async ({ req, res }) => {
 };
 
 function Home({ user }) {
+  let message;
   return (
     <Wrapper>
       <Navbar username={user} />
       <MessageWindowWrapper>
-        <MessageWindow />
+        <MessageWindow message={message} />
       </MessageWindowWrapper>
       <MessageInput />
     </Wrapper>

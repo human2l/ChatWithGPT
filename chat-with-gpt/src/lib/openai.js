@@ -1,5 +1,4 @@
 const { DUMMY_DATA } = require("@/constances");
-const { Configuration, OpenAIApi } = require("openai");
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -13,6 +12,7 @@ const getCompletion = async (dialogue) => {
     model: "gpt-3.5-turbo",
     messages: dialogue, //[{role: "user", content: "Hello world"}]
   });
+  return completion;
 };
 
 // console.log(completion.data.choices[0].message);
