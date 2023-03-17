@@ -80,7 +80,7 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
           <PasswordInput
-            type="text"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <LoginButton type="submit">

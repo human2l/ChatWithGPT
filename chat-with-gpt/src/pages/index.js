@@ -39,9 +39,7 @@ export const getServerSideProps = async ({ req, res }) => {
 };
 
 function Home({ user }) {
-  const [messages, setMessages] = useState([
-    { role: "user", content: "first message" },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const addNewMessage = async (role, newMessageContent) => {
     setIsLoading(true);

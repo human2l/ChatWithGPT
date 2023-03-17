@@ -1,4 +1,3 @@
-import { DUMMY_DATA } from "@/constances";
 import { setTokenToCookie } from "@/lib/cookies";
 import jwt from "jsonwebtoken";
 
@@ -6,7 +5,10 @@ const login = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { username, password } = req.body;
-      if (DUMMY_DATA.users[username] === password) {
+      if (
+        process.env.TEST_USERNAME === username &&
+        process.env.TEST_PASSWORD === password
+      ) {
         console.log(`${username} has logged in`);
         const token = jwt.sign({ username }, process.env.JWT_SECRET);
         setTokenToCookie(token, res);
