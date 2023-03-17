@@ -16,7 +16,6 @@ Content-Type: application/json
     
       "role": "user",
       "content": "不吃饭会瘦吗"
-    
-    
+     
 }
 ###

@@ -51,7 +51,7 @@ function Home({ user }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newMessage),
+        body: JSON.stringify([...messages, newMessage]),
       });
       if (response.ok) {
         const gptMessage = await response.json();

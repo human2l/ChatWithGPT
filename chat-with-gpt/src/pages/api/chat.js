@@ -17,8 +17,8 @@ function delay(t, v) {
 const chat = async (req, res) => {
   if (req.method === "POST") {
     try {
-      let message = req.body;
-      const completion = await getCompletion([message]);
+      let messages = req.body;
+      const completion = await getCompletion(messages);
       const responseMessage = completion.data.choices[0].message;
       //   const responseMessage = await getCompletionFake();
       return res.send(responseMessage);
