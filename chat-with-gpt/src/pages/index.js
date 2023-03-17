@@ -2,6 +2,7 @@ import MessageInput from "@/components/messageInput";
 import MessageWindow from "@/components/messageWindow";
 import Navbar from "@/components/navbar";
 import { verifyToken } from "@/lib/utils";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -12,6 +13,13 @@ const Wrapper = styled.div`
 
 const MessageWindowWrapper = styled.div`
   flex: 1;
+`;
+
+const MessageInputWrapper = styled.div`
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 `;
 
 export const getServerSideProps = async ({ req, res }) => {
@@ -31,14 +39,43 @@ export const getServerSideProps = async ({ req, res }) => {
 };
 
 function Home({ user }) {
-  let message;
+  const [messages, setMessages] = useState([
+    { role: "user", content: "first message" },
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const addNewMessage = async (role, newMessageContent) => {
+    setIsLoading(true);
+    const newMessage = { role, content: newMessageContent };
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMessage),
+      });
+      if (response.ok) {
+        const gptMessage = await response.json();
+        setMessages((prevMessages) => [...prevMessages, gptMessage]);
+      } else {
+        console.log("something went wrong with GPT");
+      }
+    } catch (error) {
+      console.log("something is wrong", error);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <Wrapper>
       <Navbar username={user} />
       <MessageWindowWrapper>
-        <MessageWindow message={message} />
+        <MessageWindow messages={messages} />
       </MessageWindowWrapper>
-      <MessageInput />
+      <MessageInputWrapper>
+        <MessageInput addNewMessage={addNewMessage} isLoading={isLoading} />
+      </MessageInputWrapper>
     </Wrapper>
   );
 }

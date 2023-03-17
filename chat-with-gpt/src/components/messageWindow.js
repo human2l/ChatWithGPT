@@ -11,35 +11,19 @@ const MessageList = styled.div`
   width: 100%;
 `;
 
-const messageWindow = () => {
+const messageWindow = ({ messages }) => {
   return (
     <Wrapper>
       <MessageList>
-        <Message
-          messageType="send"
-          name="Alice"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        />
-        <Message
-          messageType="send"
-          name="Alice"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        />
-        <Message
-          messageType="receive"
-          name="Bob"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        />
-        <Message
-          messageType="send"
-          name="Alice"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        />
-        <Message
-          messageType="receive"
-          name="Bob"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        />
+        {messages.length > 0 &&
+          messages.map((message, index) => (
+            <Message
+              key={index}
+              messageType={message.role === "user" ? "send" : "receive"}
+              name={message.role === "user" ? "Alice" : "GPT"}
+              content={message.content}
+            />
+          ))}
       </MessageList>
     </Wrapper>
   );

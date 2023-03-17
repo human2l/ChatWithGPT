@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -15,11 +16,21 @@ const Input = styled.input`
 
 const SendButton = styled.button``;
 
-const messageInput = () => {
+const messageInput = ({ addNewMessage, isLoading }) => {
+  const [message, setMessage] = useState("");
+
+  const handleSend = () => {
+    console.log(`sending message: ${message}`);
+    addNewMessage("user", message);
+    setMessage("");
+  };
+
   return (
     <Wrapper>
-      <Input />
-      <SendButton>Send</SendButton>
+      <Input onChange={(e) => setMessage(e.target.value)} value={message} />
+      <SendButton onClick={handleSend} disabled={isLoading}>
+        {isLoading ? "......" : "Send"}
+      </SendButton>
     </Wrapper>
   );
 };
