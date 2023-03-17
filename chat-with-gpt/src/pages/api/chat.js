@@ -19,6 +19,7 @@ const chat = async (req, res) => {
     try {
       let messages = req.body;
       const completion = await getCompletion(messages);
+      console.log(completion.data.choices);
       const responseMessage = completion.data.choices[0].message;
       //   const responseMessage = await getCompletionFake();
       return res.send(responseMessage);
