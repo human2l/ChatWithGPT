@@ -57,7 +57,7 @@ function Home({ user }) {
         const gptMessage = await response.json();
         setMessages((prevMessages) => [...prevMessages, gptMessage]);
       } else {
-        console.log("something went wrong with GPT", error);
+        console.log("something went wrong with GPT", response);
       }
     } catch (error) {
       console.log("something is wrong", error);
