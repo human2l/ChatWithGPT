@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import Router from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -40,7 +40,6 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const handleLogin = async (e) => {
     try {
       setIsLoading(true);
@@ -60,7 +59,7 @@ const Login = () => {
       const loggedInResponse = await response.json();
       if (loggedInResponse.done) {
         console.log("log in successful");
-        router.push("/");
+        Router.push("/");
       } else {
         setIsLoading(false);
       }
