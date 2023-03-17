@@ -4,7 +4,8 @@ export const setTokenToCookie = (token, res) => {
   const setCookie = cookie.serialize("token", token, {
     maxAge: MAX_AGE,
     expires: new Date(Date.now() + MAX_AGE * 1000),
-    secure: process.env.NODE_ENV === "production",
+    secure: false,
+    // secure: process.env.NODE_ENV === "production",
     path: "/",
   });
   res.setHeader("Set-Cookie", setCookie);
