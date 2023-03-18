@@ -20,12 +20,17 @@ const chat = async (req, res) => {
     try {
       const token = req.cookies.token;
       const user = await verifyToken(token);
-      let messages = req.body;
+      const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+      const messages = req.body;
       const completion = await getCompletion(messages);
-      console.log(completion.data.choices);
+      console.log(
+        `${user} receiving ${JSON.stringify(
+          completion.data.choices[0].message
+        )}`
+      );
       const responseMessage = completion.data.choices[0].message;
       //   const responseMessage = await getCompletionFake();
-      saveLog(user, messages);
+      saveLog(user, ip, messages);
       return res.send(responseMessage);
     } catch (error) {
       console.error("Something went wrong with GPT api", error);

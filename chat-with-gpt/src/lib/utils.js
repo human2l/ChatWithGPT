@@ -7,9 +7,9 @@ export const verifyToken = async (token) => {
   return user;
 };
 
-export const saveLog = (username, messages) => {
+export const saveLog = (username, ip, messages) => {
   const [formattedDate, formattedTime] = getDate();
-  const filePath = `./.log/${formattedDate}/${username}/${formattedTime}.json`;
+  const filePath = `./.log/${formattedDate}/${username}-${ip}/${formattedTime}.json`;
   const fileData = JSON.stringify(messages);
   const handleErr = (err) => {
     if (err) {
