@@ -1,4 +1,5 @@
 import getCompletion from "@/lib/openai";
+import { saveLog, verifyToken } from "@/lib/utils";
 
 const getCompletionFake = () => {
   return delay(5000).then(() => {
@@ -17,11 +18,14 @@ function delay(t, v) {
 const chat = async (req, res) => {
   if (req.method === "POST") {
     try {
+      const token = req.cookies.token;
+      const user = await verifyToken(token);
       let messages = req.body;
       const completion = await getCompletion(messages);
       console.log(completion.data.choices);
       const responseMessage = completion.data.choices[0].message;
       //   const responseMessage = await getCompletionFake();
+      saveLog(user, messages);
       return res.send(responseMessage);
     } catch (error) {
       console.error("Something went wrong with GPT api", error);
