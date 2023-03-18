@@ -5,23 +5,6 @@ import { verifyToken } from "@/lib/utils";
 import { useState } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const MessageWindowWrapper = styled.div`
-  flex: 1;
-`;
-
-const MessageInputWrapper = styled.div`
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-`;
-
 export const getServerSideProps = async ({ req, res }) => {
   const token = req.cookies.token;
   const user = await verifyToken(token);
@@ -67,7 +50,9 @@ function Home({ user }) {
 
   return (
     <Wrapper>
-      <Navbar username={user} />
+      <NavbarWrapper>
+        <Navbar username={user} />
+      </NavbarWrapper>
       <MessageWindowWrapper>
         <MessageWindow messages={messages} />
       </MessageWindowWrapper>
@@ -79,3 +64,25 @@ function Home({ user }) {
 }
 
 export default Home;
+
+const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const NavbarWrapper = styled.div`
+  width: 100%;
+  position: fixed;
+`;
+
+const MessageWindowWrapper = styled.div`
+  flex: 1;
+`;
+
+const MessageInputWrapper = styled.div`
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+`;

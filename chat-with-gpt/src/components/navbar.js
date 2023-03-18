@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   height: 64px;
-  border: 1px solid red;
+  background-color: #696799;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -11,7 +11,14 @@ const Wrapper = styled.div`
 
 const Menu = styled.a``;
 
-const Name = styled.div``;
+const Name = styled.div`
+  font-weight: 700;
+  color: white;
+  &::before {
+    font-weight: 500;
+    content: "welcome ";
+  }
+`;
 
 const Group = styled.a`
   margin-left: auto;
@@ -20,9 +27,10 @@ const Group = styled.a`
 const navbar = ({ username }) => {
   return (
     <Wrapper>
-      <Menu>[menu]</Menu>
+      {/* <Menu>[menu]</Menu> */}
+
       <Name>{username}</Name>
-      <Group>[group]</Group>
+      {/* <Group>[group]</Group> */}
     </Wrapper>
   );
 };

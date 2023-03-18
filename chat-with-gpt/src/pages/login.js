@@ -6,11 +6,14 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   padding-top: 20vh;
+  background-color: #b0c5fe;
 `;
 
 const LoginCard = styled.div`
+  background-color: white;
+  border-radius: 10px;
   width: 320px;
-  border: 1px solid red;
+
   margin: auto;
   padding: 16px;
   display: flex;
@@ -19,19 +22,40 @@ const LoginCard = styled.div`
   gap: 16px;
 `;
 
-const AppTittle = styled.div``;
+const AppTittle = styled.div`
+  color: #6d6b89;
+  font-size: 2rem;
+`;
 
-const LoginTittle = styled.div``;
+const LoginTittle = styled.div`
+  color: #414142;
+`;
 
 const UsernameInput = styled.input`
+  padding: 8px;
+  border: none;
   width: 100%;
+
+  border-bottom: 1px solid #828384;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const PasswordInput = styled.input`
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #828384;
   width: 100%;
+  &:focus {
+    outline: none;
+  }
 `;
 const LoginButton = styled.button`
   width: 100%;
+  border: none;
+  background-color: #b0c5fe;
+  border-radius: 5px;
 `;
 
 const RegisterRedirection = styled.div``;
@@ -76,10 +100,12 @@ const Login = () => {
           <LoginTittle>Login</LoginTittle>
           <UsernameInput
             type="text"
+            placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
           />
           <PasswordInput
             type="password"
+            placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <LoginButton type="submit">

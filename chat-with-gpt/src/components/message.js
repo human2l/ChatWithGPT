@@ -1,11 +1,13 @@
+import Image from "next/image";
 import styled from "styled-components";
-
+import gptIcon from "../assets/images/gpt.png";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: ${(p) =>
     p.messageType === "receive" ? "row" : "row-reverse"};
   justify-content: flex-start;
-  border: 1px solid black;
+  margin-bottom: 16px;
+  gap: 8px;
 `;
 
 const Avatar = styled.div``;
@@ -19,14 +21,22 @@ const Name = styled.div``;
 const Content = styled.div`
   margin-left: ${(p) => (p.messageType === "receive" ? null : "auto")};
   width: fit-content;
+  background-color: ${(p) =>
+    p.messageType === "receive" ? "#92A9FC" : "white"};
+  padding: 5px 12px;
+  border-radius: 0.4rem;
 `;
 
 const message = ({ messageType, name, content }) => {
   return (
     <Wrapper messageType={messageType}>
-      <Avatar messageType={messageType}>[avatar]</Avatar>
+      {messageType !== "send" && (
+        <Avatar messageType={messageType}>
+          <Image src={gptIcon} alt="GPT Avatar" width={32} height={32} />
+        </Avatar>
+      )}
       <MessageBody>
-        {messageType !== "send" && <Name>[{name}]</Name>}
+        {/* {messageType !== "send" && <Name>{name}</Name>} */}
         <Content messageType={messageType}>{content}</Content>
       </MessageBody>
     </Wrapper>

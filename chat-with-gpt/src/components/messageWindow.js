@@ -3,12 +3,15 @@ import Message from "./message";
 
 const Wrapper = styled.div`
   height: 100%;
-  border: 1px solid blue;
+  padding-top: 64px;
+  padding-bottom: 48px;
+  background-color: #e1e1f7;
 `;
 
 const MessageList = styled.div`
   min-height: 100%;
   width: 100%;
+  padding: 16px;
 `;
 
 const messageWindow = ({ messages }) => {
@@ -20,7 +23,7 @@ const messageWindow = ({ messages }) => {
             <Message
               key={index}
               messageType={message.role === "user" ? "send" : "receive"}
-              name={message.role === "user" ? "Alice" : "GPT"}
+              name={message.role === "user" ? "" : "GPT"}
               content={message.content}
             />
           ))}
