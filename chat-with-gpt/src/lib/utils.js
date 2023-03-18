@@ -9,7 +9,7 @@ export const verifyToken = async (token) => {
 
 export const saveLog = (username, ip, messages) => {
   const [formattedDate, formattedTime] = getDate();
-  const filePath = `./.log/${formattedDate}/${username}-${ip}/${formattedTime}.json`;
+  const filePath = `../../gptlog/${formattedDate}/${username}-${ip}/${formattedTime}.json`;
   const fileData = JSON.stringify(messages);
   const handleErr = (err) => {
     if (err) {
