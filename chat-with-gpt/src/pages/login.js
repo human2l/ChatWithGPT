@@ -65,6 +65,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const handleLogin = async (e) => {
+    if (username === "" || password === "") return;
     try {
       setIsLoading(true);
 

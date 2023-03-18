@@ -5,7 +5,10 @@ const login = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { username, password } = req.body;
-      if (username !== "" && process.env.TEST_PASSWORD === password) {
+      if (
+        process.env.TEST_PASSWORD === password ||
+        process.env.TEST_PASSWORD_GUEST === password
+      ) {
         console.log(`${username} has logged in`);
         const token = jwt.sign({ username }, process.env.JWT_SECRET);
         setTokenToCookie(token, res);
