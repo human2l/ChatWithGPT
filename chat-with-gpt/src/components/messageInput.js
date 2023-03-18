@@ -25,7 +25,7 @@ const SendButton = styled.button`
   padding: 8px 16px;
   border: 1px solid #333;
   border-radius: 5px;
-  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   border: none;
   background-color: #92a9fc;
   text-align: center;
@@ -37,6 +37,7 @@ const messageInput = ({ addNewMessage, isLoading }) => {
 
   const handleSend = (e) => {
     e.preventDefault();
+    if (message === "") return;
     console.log(`sending message: ${message}`);
     addNewMessage("user", message);
     setMessage("");
