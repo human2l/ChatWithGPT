@@ -28,6 +28,7 @@ const Content = styled.div`
 `;
 
 const message = ({ messageType, name, content }) => {
+  const formattedContent = content.replace(/\n/g, "<br>");
   return (
     <Wrapper messageType={messageType}>
       {messageType !== "send" && (
@@ -37,7 +38,9 @@ const message = ({ messageType, name, content }) => {
       )}
       <MessageBody>
         {/* {messageType !== "send" && <Name>{name}</Name>} */}
-        <Content messageType={messageType}>{content}</Content>
+        <Content messageType={messageType}>
+          <p dangerouslySetInnerHTML={{ __html: formattedContent }}></p>
+        </Content>
       </MessageBody>
     </Wrapper>
   );
